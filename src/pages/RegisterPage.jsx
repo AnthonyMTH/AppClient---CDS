@@ -1,17 +1,19 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { registerRequest } from "../api/auth";
 
 function RegisterPage() {
   const { register, handleSubmit } = useForm();
 
+  const onSubmit = handleSubmit(async (values) => {
+    const res = await registerRequest(values);
+    console.log(res);
+  });
+
   return (
     <div className="flex justify-center items-center h-[calc(100vh-100px)]">
       <div className="bg-slate-100 max-w-md w-full p-10 rounded-md">
-        <form
-          onSubmit={handleSubmit((values) => {
-            console.log(values);
-          })}
-        >
+        <form onSubmit={onSubmit}>
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
             type="text"
