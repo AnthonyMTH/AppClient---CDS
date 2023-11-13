@@ -58,7 +58,7 @@ function RegisterPage() {
         </form>
         <p className="flex justify-between gap-x-2 text-sm mt-7">
           Already have an account?
-          <Link to="/login" className="text-sky-500">
+          <Link to="/login" className="text-sky-500 hover:underline">
             Login
           </Link>
         </p>

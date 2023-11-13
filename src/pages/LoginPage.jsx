@@ -34,7 +34,7 @@ function LoginPage() {
         </form>
         <p className="flex justify-between gap-x-2 text-sm mt-7">
           Don't have an account?
-          <Link to="/register" className="text-sky-500">
+          <Link to="/register" className="text-sky-500 hover:underline">
             Register
           </Link>
         </p>
