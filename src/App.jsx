@@ -9,7 +9,7 @@ function App() {
         <Route path='/register' element={<h1>Page</h1>} />
         <Route path='/posts' element={<h1>Page</h1>} />
         <Route path='/add-post' element={<h1>Page</h1>} />
-        <Route path='/tasks/:id' element={<h1>Page</h1>} />
+        <Route path='/posts/:id' element={<h1>Page</h1>} />
         <Route path='/profile' element={<h1>Page</h1>} />
       </Routes>
     </BrowserRouter>
