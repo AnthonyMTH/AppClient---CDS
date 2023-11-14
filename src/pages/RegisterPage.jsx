@@ -21,11 +21,12 @@ function RegisterPage() {
       <div className="bg-slate-100 max-w-md w-full p-10 rounded-md">
         {
           registerErrors.map((error,i) => (
-            <div className="bg-red-500 p-2 text-white" key ={i}>
+            <div className="bg-red-500 p-2 text-white text-center my-2" key ={i}>
               {error}
             </div>
           ))
         }
+        <h1 className="text-2xl font-bold">Register</h1>
         <form onSubmit={onSubmit}>
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
