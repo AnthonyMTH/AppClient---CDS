@@ -80,13 +80,9 @@ function RegisterPage() {
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
             type="text"
-            {...register("address", { required: true })}
+            {...register("address", { required: false })}
             placeholder="Address"
           />
-          {
-            errors.address && (
-              <p className="text-red-500">Address is required</p>
-          )}
           <button
             className="bg-green-700 text-white rounded-md p-2 m-4 mx-2 font-bold hover:bg-green-600"
             type="submit"
