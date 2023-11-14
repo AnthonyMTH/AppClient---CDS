@@ -12,7 +12,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider =({children}) => {
-	const [user, setUser] =useState(null)
+	const [user, setUser] = useState(null)
 	const [isAuthenticated, setIsAuthenticated] = useState(false)
 	const [errors, setErrors] = useState([]);
 
@@ -29,23 +29,24 @@ export const AuthProvider =({children}) => {
 	
 	const signIn = async (user) => {
 		try {
-			const res = await loginRequest(user)
-			console.log(res)
-			setIsAuthenticated(true)
-		} catch(error) {
-			setErrors(error.response.data)
+			const res = await loginRequest(user)	
+			console.log(res)		
+		} catch (error) {
+			if (Array.isArray(error.response.data)) {
+				return setErrors(error.response.data)
+			}
+			setErrors([error.response.data.message])	
 		}
 	}
-	
+
 	useEffect(() => {
 		if (errors.length > 0) {
 			const timer = setTimeout(() => {
 				setErrors([])
 			}, 5000)
-			return () => clearTimeout(timer)
+			return () => clearTimeout(timer) 	// Quita el timer si ya no se usa este componente
 		}
-	})
-
+	}, [errors])
 
 	return (
 		<AuthContext.Provider 
