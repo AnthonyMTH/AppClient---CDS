@@ -12,7 +12,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider =({children}) => {
-	const [user, setUser] =useState(null)
+	const [user, setUser] = useState(null)
 	const [isAuthenticated, setIsAuthenticated] = useState(false)
 	const [errors, setErrors] = useState([]);
 
@@ -33,7 +33,7 @@ export const AuthProvider =({children}) => {
 			console.log(res)		
 		} catch (error) {
 			if (Array.isArray(error.response.data)) {
-				return error.response.data
+				return setErrors(error.response.data)
 			}
 			setErrors([error.response.data.message])	
 		}

@@ -32,7 +32,7 @@ function LoginPage() {
             className="w-full bg-slate-200 rounded-md p-2 m-2"
             type="email"
             {...register("email", { required: true })}
-            placeholder="Email"
+            placeholder="Email" autoComplete="off"
           />
           {errors.email && <p className="bg-red-500">Email is required</p>}
 
