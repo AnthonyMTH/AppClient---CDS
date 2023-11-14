@@ -30,7 +30,7 @@ function RegisterPage() {
         <form onSubmit={onSubmit}>
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
-            type="text"
+            type="text" autoComplete="off"
             {...register("username", { required: true })}
             placeholder="Username"
           />
@@ -40,7 +40,7 @@ function RegisterPage() {
           )}
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
-            type="email"
+            type="email" autoComplete="off"
             {...register("email", { required: true })}
             placeholder="Email"
           />
@@ -70,7 +70,7 @@ function RegisterPage() {
           )}
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
-            type="text"
+            type="text" autoComplete="off"
             {...register("phone", { required: true })}
             placeholder="Phone"
           />
@@ -80,7 +80,7 @@ function RegisterPage() {
           )}
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
-            type="text"
+            type="text" autoComplete="off"
             {...register("address", { required: false })}
             placeholder="Address"
           />
