@@ -1,6 +1,8 @@
 import axios from "./axios.js";
 
-export const getPostsRequest = () => axios.get('/posts')
+export const getAllPostsRequest = () => axios.get('/posts')
+
+export const getMyPostsRequest = () => axios.get('/my-posts')
 
 export const createPostRequest = (post) => axios.post('/posts', post)
 
