@@ -9,8 +9,12 @@ function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() =>{
-    if (isAuthenticated) navigate('/posts')
+    if (isAuthenticated) navigate('/')
   },[isAuthenticated] )
+
+  const onSubmit = handleSubmit(async (data) => {
+    signIn(data)
+  })
 
   return (
     <div className="flex justify-center items-center h-[calc(100vh-100px)]">
@@ -24,9 +28,7 @@ function LoginPage() {
         }
         <h1 className="text-2xl font-bold">Login</h1>
         <form
-          onSubmit={handleSubmit((values) => {
-            signIn(values);
-          })}
+          onSubmit={onSubmit}
         > 
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
