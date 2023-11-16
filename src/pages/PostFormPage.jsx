@@ -8,14 +8,12 @@ function PostFormPage() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {    
-    if (!isAuthenticated) {
-      navigate('/');
-    }
-  }, [isAuthenticated, navigate]);
+  useEffect(() =>{
+    if (isAuthenticated) navigate('/')
+  },[isAuthenticated] )
 
-  const onSubmit = handleSubmit((data) => {    
-    console.log(data);    
+  const onSubmit = handleSubmit(async (values) => {
+    signUp(values)
   });
 
   return (
