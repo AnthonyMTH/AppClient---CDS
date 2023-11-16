@@ -25,7 +25,7 @@ function NavBar() {
                     <Link to='/add-post' className="hover:text-gray-800 transition duration-300">Añadir</Link>
                 </li>
                 <li>
-                    <Link to='/logout' className="text-red-400 hover:text-red-800 transition duration-300"
+                    <Link to='/' className="text-red-400 hover:text-red-800 transition duration-300"
                     onClick={() => logout()}>Cerrar sesión</Link>
                 </li>
                 <li>
