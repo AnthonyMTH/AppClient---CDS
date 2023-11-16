@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import { PostProvider } from "./context/PostContext";
 
+import PostFormPage from "./pages/PostFormPage";
+
 function App() {
   return (
     <AuthProvider>
@@ -19,7 +21,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/posts" element={<h1>Page</h1>} />
             <Route path="/my-posts" element={<h1>Page</h1>} />
-            <Route path="/add-post" element={<h1>Page</h1>} />
+            <Route path="/add-post" element={<PostFormPage/>} />
             <Route path="/posts/:id" element={<h1>Page</h1>} />
             <Route path="/profile" element={<h1>Page</h1>} />
           </Routes>
