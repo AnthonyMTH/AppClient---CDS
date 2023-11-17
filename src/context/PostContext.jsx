@@ -37,7 +37,7 @@ export const PostProvider = ({ children }) => {
     const getMyPosts = async (id) => {
         try {
             const res = await getMyPostsRequest(id)
-            return res.data
+            setPosts(res.data)
         } catch (error) {
             console.log(error)
         }

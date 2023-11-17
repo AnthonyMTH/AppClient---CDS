@@ -8,17 +8,15 @@ import { useForm } from "react-hook-form";
 
 function PostsPage(){
 		const { user } = useAuth()
-    const { getMyPosts,posts } = usePosts()
+    const { getPosts, getMyPosts,posts } = usePosts()
 		const params = useParams()
 
 	useEffect( ()  => {
 		async function loadPosts(){
-				const userPost = await getMyPosts(user.id)
-				console.log(userPost)
+				await getMyPosts(user.id)
 		}
 		loadPosts()
 	}, []);
-
 
     return (
         <div className="m-5">
