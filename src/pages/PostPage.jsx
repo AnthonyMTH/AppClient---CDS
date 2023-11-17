@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { usePosts } from "../context/PostContext";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-function PostPage(){
-  const { getPost,posts } = usePosts()
+ function PostPage(){
+	const { register, setValue } = useForm()
+  	const { getPost, posts } = usePosts()
 	const params = useParams()
-
+	
 	useEffect( ()  => {
 		async function loadPost(){
-			await getPost(params.id)
+			const post = await getPost(params.id)
+			console.log(post.description)
+			setValue("description", post.description)
 		}
 		loadPost()
 	}, []);
+	
 
   return (
 		<div className="m-5">
@@ -21,15 +26,7 @@ function PostPage(){
         			<h1 className="font-bold text-3xl">Descripción</h1>
       			</div>
 				<div className="flex justify-between">
-					<h1 className="m-5">Aqui ira la ubicación</h1>
-				</div>
-			</div>
-			<div className="border p-5 mt-2">
-				<div className="flex justify-between">
-        			<h1 className="font-bold text-3xl">Ubicación</h1>
-      			</div>
-				<div className="flex justify-between">
-					<h1 className="m-5">Aqui ira la ubicación</h1>
+					<textarea readOnly className="m-5 resize-none outline-none"  {...register("description")}></textarea>
 				</div>
 			</div>
 			<div className="flex justify-center mt-10 ">

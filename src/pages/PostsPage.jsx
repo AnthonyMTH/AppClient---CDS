@@ -8,12 +8,11 @@ import { useForm } from "react-hook-form";
 
 function PostsPage(){
 		const { user } = useAuth()
-    const { getPosts, getMyPosts,posts } = usePosts()
-		const params = useParams()
+    const { getPosts, getMyPosts, posts } = usePosts()
 
 	useEffect( ()  => {
 		async function loadPosts(){
-				await getMyPosts(user.id)
+				const xd = await getMyPosts(user.id)
 		}
 		loadPosts()
 	}, []);
@@ -21,7 +20,7 @@ function PostsPage(){
     return (
         <div className="m-5">
       <div className="flex justify-between">
-        <h1 className="font-bold text-2xl">Listado de mis mascotas</h1>
+        <h1 className="font-bold text-2xl">Mis publicaciones</h1>
         <Link to={`/posts/`} className="rounded-lg border border-blue-300 text-blue-300 p-2 hover:bg-blue-300 hover:text-white">
             Añadir +
         </Link>
