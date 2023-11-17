@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 function LoginPage() {
   const { register, handleSubmit, formState:{errors} } = useForm();
-  const { signIn,isAuthenticated, errors: signInErrors } = useAuth();
+  const { signIn, isAuthenticated, errors: signInErrors } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() =>{

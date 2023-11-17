@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage"
 import RegisterPage from "./pages/RegisterPage"
 import HomePage from "./pages/HomePage"
 import PostsPage from "./pages/PostsPage"
+import PostPage from "./pages/PostPage"
 import PostFormPage from "./pages/PostForm"
 import ProfilePage from "./pages/ProfilePage"
 import ProtectedRoute from "./ProtectedRoute"
@@ -24,9 +25,9 @@ function App() {
 
               <Route element={<ProtectedRoute/>}>
                 <Route path='/posts' element={<PostsPage/>} />
-                <Route path="/my-posts" element={<h1>Page</h1>} />
+                <Route path="/my-posts" element={<PostsPage/>} />
                 <Route path='/add-post' element={<PostFormPage/>} />
-                <Route path='/posts/:id' element={<PostFormPage/>} />
+                <Route path='/posts/:id' element={<PostPage/>} />
                 <Route path='/profile' element={<ProfilePage/>} />
               </Route>  
             </Routes>

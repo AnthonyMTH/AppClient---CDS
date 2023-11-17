@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 
 function NavBar() {
 
-    const {isAuthenticated, logout, user} = useAuth()
+    const {isAuthenticated, logOut, user} = useAuth()
 
   return (
     <nav className="relative w-full h-[80px] bg-[#29b650] font-serif">
@@ -25,8 +25,8 @@ function NavBar() {
                     <Link to='/add-post' className="hover:text-gray-800 transition duration-300">Añadir</Link>
                 </li>
                 <li>
-                    <Link to='/logout' className="text-red-400 hover:text-red-800 transition duration-300"
-                    onClick={() => logout()}>Cerrar sesión</Link>
+                    <Link to='/' className="text-red-400 hover:text-red-800 transition duration-300"
+                    onClick={() => logOut()}>Cerrar sesión</Link>
                 </li>
                 <li>
                     <Link to='/profile' className="hover:text-gray-800 transition duration-300">Perfil</Link>

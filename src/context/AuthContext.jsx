@@ -17,6 +17,7 @@ export const AuthProvider =({children}) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false)
 	const [errors, setErrors] = useState([]);
 	const [loading, setLoading] = useState(true);
+
 	const signUp = async (user) =>{	
 		try{
 			const res = await registerRequest(user)
@@ -40,6 +41,12 @@ export const AuthProvider =({children}) => {
 			}
 			setErrors([error.response.data.message])	
 		}
+	}
+
+	const logOut = () => {
+		Cookies.remove("token")
+		setIsAuthenticated(false)
+		setUser(null)
 	}
 
 	useEffect(() => {
@@ -86,6 +93,7 @@ export const AuthProvider =({children}) => {
 		value={{
 			signUp,
 			signIn,
+			logOut,
 			user,
 			loading,
 			isAuthenticated,
