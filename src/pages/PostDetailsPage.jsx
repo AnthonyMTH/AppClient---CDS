@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { usePosts } from "../context/PostContext";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -8,7 +7,6 @@ import { useAuth } from "../context/AuthContext";
 
  function PostDetailsPage(){
 	const { user, isAuthenticated } = useAuth()
-	const { register, setValue } = useForm()
   	const { getPost, posts } = usePosts()
 	const [ post, setpost ] = useState([])
 	const [ verificator, setverificator] = useState([])
