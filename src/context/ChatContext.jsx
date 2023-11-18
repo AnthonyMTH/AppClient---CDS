@@ -28,7 +28,7 @@ export const ChatProvider = ({children}) => {
     return (
         <ChatContext.Provider value={{
             chats,
-            getChats
+            getChats,
         }}>
         {children}
         </ChatContext.Provider>
