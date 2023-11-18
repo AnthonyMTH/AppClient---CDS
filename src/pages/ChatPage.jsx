@@ -17,11 +17,11 @@ function ChatPage() {
   return (
     <>
       <NavBar />
-      <div className="flex">
+      <div className="flex items-center h-screen">
         <div className="bg-slate-200 w-1/4 h-screen">
           {/* Left Side */}
           <div className="flex flex-col gap-4">
-            <div className="bg-white h-[calc(100vh-40px)] w-[calc(35vh)] rounded-2xl m-5">
+            <div className="bg-white h-[calc(87vh)] w-[calc(35vh)] rounded-2xl m-5">
               <h2 className="font-bold text-3xl m-10">Chats</h2>
               <div>
                 {chats.map((chat) => (
@@ -35,7 +35,7 @@ function ChatPage() {
           {/* Rigth side */}
         </div>
         {/* chat body */}
-        <div>
+        <div className="w-3/4 bg-slate-200 h-screen">
           <ChatBox chat={currentChat} currentUser={user._id} />
         </div>
       </div>
