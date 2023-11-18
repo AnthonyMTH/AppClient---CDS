@@ -19,10 +19,10 @@ function PostFormPage() {
   return (
     <div className="flex justify-center items-center h-[calc(100vh-100px)]">
       <div className="bg-slate-100 max-w-md w-full p-10 rounded-md">
-        <h1 className="text-2xl font-bold">Nueva Publicación</h1>
+        <h1 className="text-2xl font-bold flex justify-center">Añadir Publicación</h1>
         <form onSubmit={onSubmit}>
-          <input
-            className="w-full bg-slate-200 rounded-md p-2 m-2"
+          <textarea
+            className="w-full bg-slate-200 rounded-md p-10 m-2"
             type="text" autoComplete="off"
             {...register("descripcion", { required: true })}
             placeholder="Descripción"
@@ -36,7 +36,7 @@ function PostFormPage() {
           />
           {errors.foto && <p className="text-red-500">Subir Fotografía es requerido</p>}
 
-          <input
+          <textarea
             className="w-full bg-slate-200 rounded-md p-2 m-2"
             type="text" autoComplete="off"
             {...register("telefono", { required: true })}
@@ -44,8 +44,8 @@ function PostFormPage() {
           />
           {errors.telefono && <p className="text-red-500">Teléfono es requerido</p>}
 
-          <input
-            className="w-full bg-slate-200 rounded-md p-2 m-2"
+          <textarea
+            className="w-full bg-slate-200 rounded-md p-10 m-2"
             type="text" autoComplete="off"
             {...register("direccion", { required: true })}
             placeholder="Dirección"
@@ -53,8 +53,8 @@ function PostFormPage() {
           {errors.direccion && <p className="text-red-500">Dirección es requerida</p>}
 
           <button
-            className="bg-blue-500 text-white rounded-md p-2 m-4 mx-2 font-bold hover:bg-blue-400"
-            type="submit"
+            className="bg-blue-500 text-white rounded-md p-2 m-2 mx-2 font-bold hover:bg-blue-400"
+            type="submit" display="flex" justify-content="center"
           >
             Publicar
           </button>
@@ -62,6 +62,7 @@ function PostFormPage() {
       </div>
     </div>
   );
+  
 }
 
 export default PostFormPage;
