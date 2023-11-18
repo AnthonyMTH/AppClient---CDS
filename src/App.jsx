@@ -9,11 +9,14 @@ import PostFormPage from "./pages/PostForm";
 import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { PostProvider } from "./context/PostContext";
+import ChatPage from "./pages/ChatPage";
+import { ChatProvider } from "./context/ChatContext";
 
 function App() {
   return (
     <AuthProvider>
       <PostProvider>
+        <ChatProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -26,9 +29,11 @@ function App() {
                 <Route path="/add-post" element={<PostFormPage />} />
                 <Route path="/posts/:id" element={<PostFormPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/chats" element={<ChatPage />} />
               </Route>
           </Routes>
         </BrowserRouter>
+        </ChatProvider>
       </PostProvider>
     </AuthProvider>
   );
