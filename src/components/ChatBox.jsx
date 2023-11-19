@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getUserRequest } from "../api/user";
 import { useMessages } from "../context/MessageContext";
 import {format} from 'timeago.js'
@@ -8,6 +8,7 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
   const [userData, setUserData] = useState(null);
   const { messages, getMessages, addMessage, setMessages } = useMessages();
   const [ newMessage, setNewMessage ] = useState("")
+  const scroll = useRef()
 
   useEffect(() => {
     console.log('chatbox', userData)
@@ -59,18 +60,22 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
     setSendMessage({...message, receiverId})
   }
 
+  // scroll hacia el último mensaje
+  useEffect(() => {
+    scroll.current?.scrollIntoView({behavior: 'smooth'})
+  }, [messages])
+
   return (
     <>
-      <div className="grid rounded-2xl grid-rows-[14vh,63vh,10vh] bg-white mt-5">
+      <div className="grid rounded-2xl grid-rows-[14vh,65vh,10vh] bg-white mt-5">
         {chat? (
         <>
-        <div>
+        <div> 
           <div className="mx-10 my-2 hover:bg-slate-200 w-1/5 rounded-xl p-4">
             <div className="flex">
               {/* foto de usuario */}
               <div className="flex flex-col">
                 <span className="font-bold">{userData?.username}</span>
-                <span>Online</span>
               </div>
             </div>
           </div>
@@ -82,11 +87,13 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
           <div className="flex flex-col gap-2 p-6 overflow-scroll">
             {messages.map((message) => (
                 <>
+                <div ref={scroll} className="flex flex-col">
                     <div className={message.senderId === currentUserId
-                    ? "bg-green-300 p-2 rounded-md text-white flex flex-col w-fit": 
-                    "bg-blue-300 p-2 rounded-md text-white flex flex-col w-fit self-end"}>
-                        <span>{message.text}</span> 
+                    ? "bg-blue-300 p-2 rounded-md rounded-br-none text-white w-fit self-end": 
+                    "bg-green-300 p-2 rounded-md rounded-bl-none text-white w-fit"}>
+                        <p>{message.text}</p> 
                         <span className="text-xs">{format(message.createdAt)}</span>
+                    </div>
                     </div>
                 </>
             ))}

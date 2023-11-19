@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUserRequest } from "../api/user";
 
-function Conversation({ data, currentUserId }) {
+function Conversation({ data, currentUserId, online }) {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function Conversation({ data, currentUserId }) {
         {/* foto de usuario */}
         <div className="flex flex-col">
             <span className="font-bold">{userData?.username}</span>
-            <span>Online</span>
+            <span>{online? 'Online': 'Offline'}</span>
         </div>
     </div>
   </div>

@@ -6,7 +6,7 @@ function NavBar() {
     const {isAuthenticated, logout, user} = useAuth()
 
   return (
-    <nav className="relative w-full h-[80px] bg-[#29b650] font-serif">
+    <nav className="relative w-full h-[8vh] bg-[#29b650] font-serif">
         <div className="flex justify-between">
             <div className="ml-10 mt-5">
                 {/* foto de la página */}

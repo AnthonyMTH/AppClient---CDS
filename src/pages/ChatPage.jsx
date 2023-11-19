@@ -45,20 +45,26 @@ function ChatPage() {
     console.log(user)
   }, []);
 
+  const checkOnlineStauts = (chat) => {
+    const chatMember = chat.members.find((member) => member !== user.id)
+    const online = onlineUsers.find((user) => user.userId === chatMember)
+    return online ? true : false
+  }
+
   return (
     <>
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <NavBar />
-      <div className="flex items-center h-screen">
-        <div className="bg-slate-200 w-1/4 h-screen">
+      <div className="flex items-center flex-grow">
+        <div className="bg-slate-200 w-1/4 h-full">
           {/* Left Side */}
           <div className="flex flex-col gap-4">
-            <div className="bg-white h-[calc(87vh)] w-[calc(35vh)] rounded-2xl m-5">
+            <div className="bg-white w-[calc(35vh)] rounded-2xl m-5">
               <h2 className="font-bold text-3xl m-10">Chats</h2>
               <div>
                 {chats.map((chat) => (
                   <div onClick={() => setCurrentChat(chat)}>
-                    <Conversation data={chat} currentUserId={user.id} />
+                    <Conversation data={chat} currentUserId={user.id} online={checkOnlineStauts(chat)}/>
                   </div>
                 ))}
               </div>
@@ -67,7 +73,7 @@ function ChatPage() {
           {/* Rigth side */}
         </div>
         {/* chat body */}
-        <div className="w-3/4 bg-slate-200 h-screen">
+        <div className="w-screen bg-slate-200 h-full">
           <ChatBox chat={currentChat} currentUserId={user.id} setSendMessage={setSendMessage} receiveMessage={receiveMessage}/>
         </div>
       </div>
