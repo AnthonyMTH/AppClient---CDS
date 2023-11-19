@@ -3,17 +3,24 @@ import { getUserRequest } from "../api/user";
 import { useMessages } from "../context/MessageContext";
 import {format} from 'timeago.js'
 import InputEmoji from 'react-input-emoji'
-import {io} from 'socket.io-client'
 
-function ChatBox({ chat, currentUserId }) {
+function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
   const [userData, setUserData] = useState(null);
-  const { messages, getMessages } = useMessages();
+  const { messages, getMessages, addMessage, setMessages } = useMessages();
   const [ newMessage, setNewMessage ] = useState("")
 
   useEffect(() => {
-    const userId = chat?.members?.find(
-      (id) => id !== currentUserId /* usuario con el que queremos chatear */
-    );
+    console.log('chatbox', userData)
+  }, [])
+
+  useEffect(() => {
+    if (receiveMessage !== null && receiveMessage.chatId === chat._id) {
+      setMessages([...messages, receiveMessage])
+    }
+  }, [receiveMessage])
+
+  useEffect(() => {
+    const userId = chat?.members?.find((id) => id !== currentUserId);
 
     const getUserData = async () => {
       try {
@@ -31,10 +38,25 @@ function ChatBox({ chat, currentUserId }) {
     if (chat !== null) {
       getMessages(chat._id);
     }
+    console.log(userData)
   }, chat);
 
   const handleChange = (newMessage) => {
     setNewMessage(newMessage)
+  }
+
+  const handleSend = (e) => {
+    e.preventDefault()
+    const message = {
+      senderId: currentUserId,
+      text: newMessage,
+      chatId: chat._id
+    }
+    addMessage(message)
+
+    /* Enviar mensaje a socket */
+    const receiverId = chat.members.find((id) => id !== currentUserId)
+    setSendMessage({...message, receiverId})
   }
 
   return (
@@ -60,7 +82,9 @@ function ChatBox({ chat, currentUserId }) {
           <div className="flex flex-col gap-2 p-6 overflow-scroll">
             {messages.map((message) => (
                 <>
-                    <div className={message.senderId === currentUserId? "bg-green-300 p-2 rounded-md text-white flex flex-col w-fit": "bg-blue-300 p-2 rounded-md text-white flex flex-col w-fit self-end"}>
+                    <div className={message.senderId === currentUserId
+                    ? "bg-green-300 p-2 rounded-md text-white flex flex-col w-fit": 
+                    "bg-blue-300 p-2 rounded-md text-white flex flex-col w-fit self-end"}>
                         <span>{message.text}</span> 
                         <span className="text-xs">{format(message.createdAt)}</span>
                     </div>
@@ -75,7 +99,8 @@ function ChatBox({ chat, currentUserId }) {
                 value = {newMessage}
                 onChange={handleChange}
                 />
-                <div className="p-2 m-1 bg-green-600 rounded-md h-[4vh] font-bold hover:bg-green-400 hover:cursor-pointer">
+                <div className="p-2 m-1 bg-green-600 rounded-md h-[4vh] font-bold hover:bg-green-400 hover:cursor-pointer"
+                onClick={handleSend}>
                   Send
                 </div>
               </div>

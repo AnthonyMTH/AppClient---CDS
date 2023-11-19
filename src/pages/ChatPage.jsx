@@ -12,8 +12,17 @@ function ChatPage() {
 
   const [currentChat, setCurrentChat] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([])
+  const [sendMessage, setSendMessage] = useState(null)
+  const [receiveMessage, setReceiveMessage] = useState(null)
 
   const socket = useRef()
+
+  // enviar mensaje a socket
+  useEffect(() => {
+    if (sendMessage !== null) {
+      socket.current.emit('send-message', sendMessage)
+    }
+  }, [sendMessage])
 
   useEffect(() => {
     socket.current = io('http://localhost:8800')
@@ -23,8 +32,17 @@ function ChatPage() {
     })
   }, [user])
 
+  // recibir mensaje de socket
+  useEffect(() => {
+    socket.current.on('receive-message', (data) => {
+      console.log('data received in Chat.jsx', data)
+      setReceiveMessage(data)
+    })
+  }, [])
+
   useEffect(() => {
     getChats(user.id);
+    console.log(user)
   }, []);
 
   return (
@@ -40,7 +58,7 @@ function ChatPage() {
               <div>
                 {chats.map((chat) => (
                   <div onClick={() => setCurrentChat(chat)}>
-                    <Conversation data={chat} currentUserId={user._id} />
+                    <Conversation data={chat} currentUserId={user.id} />
                   </div>
                 ))}
               </div>
@@ -50,7 +68,7 @@ function ChatPage() {
         </div>
         {/* chat body */}
         <div className="w-3/4 bg-slate-200 h-screen">
-          <ChatBox chat={currentChat} currentUser={user._id} />
+          <ChatBox chat={currentChat} currentUserId={user.id} setSendMessage={setSendMessage} receiveMessage={receiveMessage}/>
         </div>
       </div>
       </div>

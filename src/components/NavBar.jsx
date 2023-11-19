@@ -29,7 +29,7 @@ function NavBar() {
                     onClick={() => logout()}>Cerrar sesión</Link>
                 </li>
                 <li>
-                    <Link to='/profile' className="hover:text-gray-800 transition duration-300">Perfil</Link>
+                    <Link to='/profile' className="hover:text-gray-800 transition duration-300">{user.username}</Link>
                     {/* foto de perfil */}
                 </li>
                     </>
