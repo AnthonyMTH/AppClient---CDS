@@ -3,6 +3,7 @@ import { getUserRequest } from "../api/user";
 import { useMessages } from "../context/MessageContext";
 import {format} from 'timeago.js'
 import InputEmoji from 'react-input-emoji'
+import {io} from 'socket.io-client'
 
 function ChatBox({ chat, currentUserId }) {
   const [userData, setUserData] = useState(null);
@@ -38,11 +39,11 @@ function ChatBox({ chat, currentUserId }) {
 
   return (
     <>
-      <div className="grid rounded-2xl grid-rows-[14vh,60vh,13vh] bg-white mt-5">
+      <div className="grid rounded-2xl grid-rows-[14vh,63vh,10vh] bg-white mt-5">
         {chat? (
         <>
         <div>
-          <div className="mx-10 my-2 hover:bg-slate-200 w-1/5 rounded-xl p-4 m-10">
+          <div className="mx-10 my-2 hover:bg-slate-200 w-1/5 rounded-xl p-4">
             <div className="flex">
               {/* foto de usuario */}
               <div className="flex flex-col">
