@@ -12,6 +12,8 @@ import ProtectedRoute from "./ProtectedRoute"
 import NavBar from "./components/NavBar";
 import { PostProvider } from "./context/PostContext";
 
+import PostFormPage from "./pages/PostFormPage";
+
 function App() {
   return (
     <AuthProvider>
