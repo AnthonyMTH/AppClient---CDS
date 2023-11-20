@@ -9,19 +9,18 @@ import NavBar from "../components/NavBar";
 
 function PostFormPage() {
   const { register, handleSubmit, formState: { errors },setValue } = useForm();
-  const { isAuthenticated } = useAuth();
-  const { createPost } = usePosts();
+  const { user, isAuthenticated } = useAuth();
+  const { createPost, getMyPosts } = usePosts();
   const navigate  = useNavigate();
 
-  const onSubmit = handleSubmit(async (values) => {
-    async function createValue() {
+  const onSubmit = handleSubmit((values) => {
       const res = {
         description: values.description, 
         image: values.image[0]
       }
       createPost(res)
-    }
-    createValue().then(navigate("/my-posts"))
+      getMyPosts(user.id).then(navigate('/my-posts'))
+      
   });
 
   return (

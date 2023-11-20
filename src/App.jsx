@@ -34,6 +34,7 @@ function App() {
                     <Route path='/add-post' element={<PostFormPage/>} />
                     <Route path='/posts/:id' element={<PostDetailsPage/>} />
                     <Route path='/profile' element={<ProfilePage/>} />
+                    <Route path='/profile/:id' element={<ProfilePage/>} />
                     <Route path="/chats" element={<ChatPage />} />
                   </Route>
                 </Routes>
