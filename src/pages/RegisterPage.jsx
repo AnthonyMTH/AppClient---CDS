@@ -10,7 +10,7 @@ function RegisterPage() {
 
   useEffect(() =>{
     if (isAuthenticated) navigate('/')
-  },[isAuthenticated] )
+  },[isAuthenticated])
 
   const onSubmit = handleSubmit(async (values) => {
     signUp(values)

@@ -11,28 +11,35 @@ import ProtectedRoute from "./ProtectedRoute"
 import PostFormPage from "./pages/PostFormPage";
 import NavBar from "./components/NavBar";
 import { PostProvider } from "./context/PostContext";
+import ChatPage from "./pages/ChatPage";
+import { ChatProvider } from "./context/ChatContext";
+import { MessageProvider } from "./context/MessageContext";
 
 
 function App() {
   return (
     <AuthProvider>
       <PostProvider>
-        <BrowserRouter>
-          <NavBar />
-            <Routes>
-              <Route path='/' element={<HomePage/>} />
-              <Route path='/login' element={<LoginPage />} />
-              <Route path='/register' element={<RegisterPage />} />
+        <ChatProvider>
+          <MessageProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/" element={<HomePage />} />
 
-              <Route element={<ProtectedRoute/>}>
-                <Route path='/posts' element={<PostsPage/>} />
-                <Route path="/my-posts" element={<PostsPage/>} />
-                <Route path='/add-post' element={<PostFormPage/>} />
-                <Route path='/posts/:id' element={<PostDetailsPage/>} />
-                <Route path='/profile' element={<ProfilePage/>} />
-              </Route>  
-            </Routes>
-        </BrowserRouter>
+                <Route element={<ProtectedRoute/>}>
+                  <Route path='/posts' element={<PostsPage/>} />
+                  <Route path="/my-posts" element={<PostsPage/>} />
+                  <Route path='/add-post' element={<PostFormPage/>} />
+                  <Route path='/posts/:id' element={<PostDetailsPage/>} />
+                  <Route path='/profile' element={<ProfilePage/>} />
+                  <Route path="/chats" element={<ChatPage />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </MessageProvider>
+        </ChatProvider>
       </PostProvider>
     </AuthProvider>
   );

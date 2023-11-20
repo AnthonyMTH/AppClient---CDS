@@ -6,7 +6,7 @@ function NavBar() {
     const {isAuthenticated, logOut, user} = useAuth()
 
   return (
-    <nav className="relative w-full h-[80px] bg-[#29b650] font-serif">
+    <nav className="relative w-full h-[8vh] bg-[#29b650] font-serif">
         <div className="flex justify-between">
             <div className="ml-10 mt-5">
                 {/* foto de la página */}
@@ -29,7 +29,7 @@ function NavBar() {
                     onClick={() => logOut()}>Cerrar sesión</Link>
                 </li>
                 <li>
-                    <Link to='/profile' className="hover:text-gray-800 transition duration-300">Perfil</Link>
+                    <Link to='/profile' className="hover:text-gray-800 transition duration-300">{user.username}</Link>
                     {/* foto de perfil */}
                 </li>
                     </>
