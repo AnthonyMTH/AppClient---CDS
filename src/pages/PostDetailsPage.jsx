@@ -4,6 +4,7 @@ import { usePosts } from "../context/PostContext";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import NavBar from "../components/NavBar";
 
  function PostDetailsPage(){
 	const { user, isAuthenticated } = useAuth()
@@ -18,10 +19,11 @@ import { useAuth } from "../context/AuthContext";
 			setpost(post_)
 		}
 		async function verificatorPost(){
-			setverificator(false)
 			const post_ = await getPost(params.id)
 			if(post_.user == user.id){
 				setverificator(true)
+			} else{
+				setverificator(false)
 			}
 		}
 		loadPost()
@@ -29,7 +31,9 @@ import { useAuth } from "../context/AuthContext";
 	}, []);
 
   return (
-		<div className="m-5">
+	<>
+      <NavBar />
+	  <div className="m-5">
 			<div className="border p-5">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl">Descripción</h1>
@@ -59,6 +63,7 @@ import { useAuth } from "../context/AuthContext";
 				</>)}
 			</div>
 		</div>
+	</>	
 	)
 }
 

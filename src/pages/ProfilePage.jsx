@@ -1,10 +1,14 @@
 import { useAuth } from "../context/AuthContext"
 import { Link } from "react-router-dom"
-function ProfilePage(){
-    const { user, isAuthenticated } = useAuth()
-    console.log(user)
+import NavBar from "../components/NavBar";
 
-    return (
+function ProfilePage(){
+  const { user, isAuthenticated } = useAuth()
+  console.log(user)
+
+  return (
+    <>
+      <NavBar />
         <div className="flex flex-col font-mono">
             <div className="flex max-h-full items-end">
                 <div className="bg-[#98fb98] flex h-72 w-72 flex-col justify-baseline ">
@@ -83,6 +87,7 @@ function ProfilePage(){
                 </div>
             </div>          
         </div>
+			</>
     )
 }
 
