@@ -2,18 +2,20 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { usePosts } from "../context/PostContext";
+import { useState } from "react";
 
 function PostFormPage() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors },setValue } = useForm();
   const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() =>{
-    if (isAuthenticated) navigate('/')
-  },[isAuthenticated] )
+  const { createPost } = usePosts();
 
   const onSubmit = handleSubmit(async (values) => {
-    signUp(values)
+    const res = {
+      description: values.description,
+      image: values.image[0]
+    }
+    createPost(res)
   });
 
   return (
@@ -24,7 +26,7 @@ function PostFormPage() {
           <textarea
             className="w-full bg-slate-200 rounded-md p-10 m-2"
             type="text" autoComplete="off"
-            {...register("descripcion", { required: true })}
+            {...register("description", { required: true })}
             placeholder="Descripción"
           />
           {errors.descripcion && <p className="text-red-500">Descripción es requerida</p>}
@@ -32,9 +34,29 @@ function PostFormPage() {
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
             type="file"
-            {...register("foto", { required: true })}
+            {...register("image", { required: true })}
           />
           {errors.foto && <p className="text-red-500">Subir Fotografía es requerido</p>}
+          
+
+
+          <button
+            className="bg-blue-500 text-white rounded-md p-2 m-2 mx-2 font-bold hover:bg-blue-400"
+            type="submit" display="flex" justify-content="center"
+          >
+            Publicar
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+  
+}
+
+export default PostFormPage;
+
+/*
+          
 
           <textarea
             className="w-full bg-slate-200 rounded-md p-2 m-2"
@@ -51,18 +73,4 @@ function PostFormPage() {
             placeholder="Dirección"
           />
           {errors.direccion && <p className="text-red-500">Dirección es requerida</p>}
-
-          <button
-            className="bg-blue-500 text-white rounded-md p-2 m-2 mx-2 font-bold hover:bg-blue-400"
-            type="submit" display="flex" justify-content="center"
-          >
-            Publicar
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-  
-}
-
-export default PostFormPage;
+*/

@@ -16,6 +16,15 @@ export const usePosts = () => {
 export const PostProvider = ({ children }) => {
     const [posts, setPosts] = useState([])
 
+    const createPost = async (post) =>{	
+		try{
+            console.log(post)
+			const res = await createPostRequest(post)
+		}catch(error){
+			console.log(error)
+		}
+	};
+
     const getPosts = async () => {
         try {
             const res = await getAllPostsRequest()
@@ -43,12 +52,15 @@ export const PostProvider = ({ children }) => {
         }
     }
 
+
+
     return (
         <PostContext.Provider value={{
             posts,
             getPosts,
             getPost,
             getMyPosts,
+            createPost
         }}>
             {children}
         </PostContext.Provider>

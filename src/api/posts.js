@@ -4,7 +4,19 @@ export const getAllPostsRequest = () => axios.get('/posts')
 
 export const getMyPostsRequest = () => axios.get('/my-posts')
 
-export const createPostRequest = (post) => axios.post('/posts', post)
+export const createPostRequest = (post) => {
+    const form = new FormData()
+
+    for(let key in post){
+       form.append(key, post[key])
+    }
+
+    axios.post('/posts', form, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    })
+}
 
 export const updatePostRequest = (id, post) => axios.put(`/posts/${id}`, post)
 

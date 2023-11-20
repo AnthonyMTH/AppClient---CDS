@@ -6,13 +6,12 @@ import RegisterPage from "./pages/RegisterPage"
 import HomePage from "./pages/HomePage"
 import PostsPage from "./pages/PostsPage"
 import PostDetailsPage from "./pages/PostDetailsPage"
-import PostFormPage from "./pages/PostForm"
 import ProfilePage from "./pages/ProfilePage"
 import ProtectedRoute from "./ProtectedRoute"
+import PostFormPage from "./pages/PostFormPage";
 import NavBar from "./components/NavBar";
 import { PostProvider } from "./context/PostContext";
 
-import PostFormPage from "./pages/PostFormPage";
 
 function App() {
   return (

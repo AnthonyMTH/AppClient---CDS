@@ -5,7 +5,7 @@ function PostCard({ post }) {
   return (
     <div className="bg-slate-100 p-10 relative">
       <p className="">{post.description}</p>
-      <p>Aquí iría la imagen del post</p>
+      { post.photo ? (<><img src={post.photo.url}/></>) : (<></>)}
       <div className="flex justify-between">
         <div className="flex justify-between">
           <Link
