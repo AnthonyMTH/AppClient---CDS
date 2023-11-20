@@ -22,7 +22,7 @@ function PostCard({ post }) {
             <>
               <Link
                 className="text-sm font-bold bg-blue-600 text-slate-200 rounded-md p-1.5 px-2.5 m-2 ml-0 hover:bg-blue-400 hover:text-white"
-                to={`/posts`}
+                to={`/edit-post/${post._id}`}
               >
                 Editar
               </Link>

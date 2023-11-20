@@ -31,6 +31,7 @@ function App() {
                 <Route element={<ProtectedRoute/>}>
                   <Route path="/my-posts" element={<MyPostsPage/>} />
                   <Route path='/add-post' element={<PostFormPage/>} />
+                  <Route path='/edit-post/:id' element={<PostFormPage/>} />
                   <Route path='/posts/:id' element={<PostDetailsPage/>} />
                   <Route path='/profile' element={<ProfilePage/>} />
                   <Route path="/chats" element={<ChatPage />} />

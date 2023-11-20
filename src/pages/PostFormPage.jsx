@@ -21,7 +21,6 @@ function PostFormPage() {
       photo: values.image[0],
     };
 
-    // Espera a que se complete la creación del post
     await createPost(res);
 
     // Después de que la creación del post se completa, realiza la redirección
@@ -35,6 +34,15 @@ function PostFormPage() {
     <>
     <div className="flex justify-center items-center h-[calc(100vh-100px)]">
       <div className="bg-slate-100 max-w-md w-full p-10 rounded-md">
+        {isAuthenticated ? (
+        <>
+        
+        </>
+        ) : (
+          <>
+
+          </>
+        ) }
         <h1 className="text-2xl font-bold flex justify-center">Añadir Publicación</h1>
         <form onSubmit={onSubmit}>
           <textarea
@@ -58,7 +66,7 @@ function PostFormPage() {
             className="bg-blue-500 text-white rounded-md p-2 m-2 mx-2 font-bold hover:bg-blue-400"
             type="submit" display="flex" justify-content="center"
           >
-            Publicar
+            Guardar
           </button>
         </form>
       </div>
