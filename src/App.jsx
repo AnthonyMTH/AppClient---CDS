@@ -23,10 +23,10 @@ function App() {
         <ChatProvider>
           <MessageProvider>
             <BrowserRouter>
-              <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/" element={<HomePage />} />
+                <Routes>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/" element={<HomePage />} />
 
                 <Route element={<ProtectedRoute/>}>
                   <Route path="/my-posts" element={<MyPostsPage/>} />

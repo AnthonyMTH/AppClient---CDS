@@ -47,42 +47,10 @@ function ProfilePage() {
             </div>
           </div>
         </div>
-
-        <hr className="mt-5 h-0.5 w-full"/>
-
-        <div className="flex flex-col justify-center mt-10">
-              <div className="font-serif text-2xl px-2 flex justify-center">
-                <h1 className="flex justify-center font-bold">
-                  Mis publicaciones
-                </h1>
-            </div>
-            <div className="flex flex-row justify-between">
-              <div className="bg-blue-200 m-2 h-48 w-64 flex-1 flex flex-col justify-center">
-                <div className="flex justify-center">
-                  <h1>Foto 1</h1>
-                </div>
-              </div>
-              <div className="bg-blue-200 m-2 h-48 w-64 flex-1 flex flex-col justify-center">
-                <div className="flex justify-center">
-                  <h1>Foto 2</h1>
-                </div>
-              </div>
-              <div className="bg-blue-200 m-2 h-48 w-64 flex-1 flex flex-col justify-center">
-                <div className="flex justify-center">
-                  <h1>Foto 3</h1>
-                </div>
-              </div>
-              <div className="bg-blue-200 m-2 h-48 w-64 flex-1 flex flex-col justify-center">
-                <div className="flex justify-center">
-                  <h1>Foto 4</h1>
-                </div>
-              </div>
-            </div>
         </div>
-      </div>
-      </div>
-    </>
-  );
+        </div>
+			</>
+    )
 }
 
 export default ProfilePage;

@@ -4,13 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { usePosts } from "../context/PostContext";
 import { useState } from "react";
+import NavBar from "../components/NavBar";
+
 
 function PostFormPage() {
   const { register, handleSubmit, formState: { errors },setValue } = useForm();
   const { isAuthenticated } = useAuth();
   const { createPost } = usePosts();
-
-  const navigate = useNavigate()
+  const navigate  = useNavigate();
 
   const onSubmit = handleSubmit(async (values) => {
     try {
@@ -60,7 +61,7 @@ function PostFormPage() {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
   
 }
