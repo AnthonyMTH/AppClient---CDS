@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage"
 import PostsPage from "./pages/PostsPage"
 import PostDetailsPage from "./pages/PostDetailsPage"
 import ProfilePage from "./pages/ProfilePage"
-import ProtectedRoute from "./ProtectedRoute"
+import ProtectedRoute from "./components/ProtectedRoute"
 import PostFormPage from "./pages/PostFormPage";
 import NavBar from "./components/NavBar";
 import { PostProvider } from "./context/PostContext";
