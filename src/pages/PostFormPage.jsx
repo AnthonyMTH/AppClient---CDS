@@ -32,6 +32,7 @@ function PostFormPage() {
   });
 
   return (
+    <>
     <div className="flex justify-center items-center h-[calc(100vh-100px)]">
       <div className="bg-slate-100 max-w-md w-full p-10 rounded-md">
         <h1 className="text-2xl font-bold flex justify-center">Añadir Publicación</h1>
@@ -60,6 +61,7 @@ function PostFormPage() {
             Publicar
           </button>
         </form>
+      </div>
       </div>
     </>
   );
