@@ -23,7 +23,6 @@ function App() {
         <ChatProvider>
           <MessageProvider>
             <BrowserRouter>
-              <NavBar />
                 <Routes>
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
