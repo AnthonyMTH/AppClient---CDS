@@ -14,7 +14,7 @@ function PostsPage(){
 
 	useEffect( ()  => {
 		async function loadPosts(){
-				const xd = await getMyPosts(user.id)
+				await getMyPosts(user.id)
 		}
 		loadPosts()
 	}, []);

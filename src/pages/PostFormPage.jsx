@@ -21,7 +21,7 @@ function PostFormPage() {
       }
       createPost(res)
     }
-    createValue().then(await navigate("/my-posts"))
+    createValue().then(navigate("/my-posts"))
   });
 
   return (

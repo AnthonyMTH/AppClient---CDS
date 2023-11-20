@@ -4,11 +4,7 @@ import { Link } from "react-router-dom";
 
 function PostCard({ post }) {
   const { getPosts } = usePosts();
-
-  useEffect(() => {
-    getPosts();
-  },[])
-
+  
   return (
     <div className="bg-slate-100 p-10 relative">
       <p className="">{post.description}</p>
