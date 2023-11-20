@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 function PostCard({ post }) {
   return (
-    <div className="bg-slate-100 p-10 relative">
+    <div className="bg-slate-100 p-10 relative flex flex-col">
       <p className="">{post.description}</p>
-      { post.photo ? (<><img src={post.photo.url}/></>) : (<></>)}
+      { post.photo ? (<><img src={post.photo.url} className="my-2"/></>) : (<></>)}
       <div className="flex justify-between">
         <div className="flex justify-between">
           <Link

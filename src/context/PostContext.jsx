@@ -16,10 +16,11 @@ export const usePosts = () => {
 export const PostProvider = ({ children }) => {
     const [posts, setPosts] = useState([])
 
-    const createPost = async (post) =>{	
+    const createPost = async (post) => {
 		try{
             console.log(post)
 			const res = await createPostRequest(post)
+            
 		}catch(error){
 			console.log(error)
 		}
@@ -43,15 +44,14 @@ export const PostProvider = ({ children }) => {
         }
     }
 
-    const getMyPosts = async (id) => {
+    const getMyPosts = async () => {
         try {
-            const res = await getMyPostsRequest(id)
+            const res = await getMyPostsRequest()
             setPosts(res.data)
         } catch (error) {
             console.log(error)
         }
     }
-
 
 
     return (

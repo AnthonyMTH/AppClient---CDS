@@ -11,7 +11,7 @@ export const createPostRequest = (post) => {
        form.append(key, post[key])
     }
 
-    axios.post('/posts', form, {
+    return axios.post('/posts', form, {
         headers: {
             "Content-Type": "multipart/form-data"
         }

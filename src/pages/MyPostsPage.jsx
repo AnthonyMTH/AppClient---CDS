@@ -6,15 +6,12 @@ import PostCard from "../components/PostCard";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-function PostsPage(){
+function MyPostsPage(){
 		const { user } = useAuth()
     const { getPosts, getMyPosts, posts } = usePosts()
 
-	useEffect( ()  => {
-		async function loadPosts(){
-				const xd = await getMyPosts(user.id)
-		}
-		loadPosts()
+	useEffect(() => {
+		getMyPosts()
 	}, []);
 
     return (
@@ -37,4 +34,4 @@ function PostsPage(){
   )
 }
 
-export default PostsPage
+export default MyPostsPage

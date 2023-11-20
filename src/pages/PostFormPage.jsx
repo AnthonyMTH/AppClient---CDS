@@ -10,12 +10,24 @@ function PostFormPage() {
   const { isAuthenticated } = useAuth();
   const { createPost } = usePosts();
 
+  const navigate = useNavigate()
+
   const onSubmit = handleSubmit(async (values) => {
+    try {
+    console.log(values);
     const res = {
       description: values.description,
-      image: values.image[0]
-    }
-    createPost(res)
+      photo: values.image[0],
+    };
+
+    // Espera a que se complete la creación del post
+    await createPost(res);
+
+    // Después de que la creación del post se completa, realiza la redirección
+    navigate("/my-posts");
+  } catch (error) {
+    console.error("Error al crear el post", error);
+  }
   });
 
   return (
@@ -29,14 +41,14 @@ function PostFormPage() {
             {...register("description", { required: true })}
             placeholder="Descripción"
           />
-          {errors.descripcion && <p className="text-red-500">Descripción es requerida</p>}
+          {errors.description && <p className="text-red-500">Descripción es requerida</p>}
 
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
             type="file"
             {...register("image", { required: true })}
           />
-          {errors.foto && <p className="text-red-500">Subir Fotografía es requerido</p>}
+          {errors.image && <p className="text-red-500">Subir Fotografía es requerido</p>}
           
 
 
