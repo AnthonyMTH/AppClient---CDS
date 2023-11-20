@@ -16,12 +16,12 @@ function PostFormPage() {
   const onSubmit = handleSubmit(async (values) => {
     async function createValue() {
       const res = {
-        description: values.description,
+        description: values.description, 
         image: values.image[0]
       }
       createPost(res)
     }
-    createValue().then(navigate("/my-posts"))
+    createValue().then(await navigate("/my-posts"))
   });
 
   return (

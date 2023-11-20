@@ -34,9 +34,14 @@ import NavBar from "../components/NavBar";
 	<>
       <NavBar />
 	  <div className="m-5">
-			<div className="border p-5">
+			<div className="">
+				<div className="flex justify-center">
+					{ post.photo ? (<><img src={post.photo.url}/></>) : (<></>)}
+				</div>
+			</div>
+			<div className="border p-5 ml-20 mr-20 m-5">
 				<div className="flex justify-between">
-					<h1 className="font-bold text-3xl">Descripción</h1>
+					<h1 className="font-bold text-2xl">Descripción</h1>
 					{verificator ? (
 						<>
 						<div>
