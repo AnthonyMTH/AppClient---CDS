@@ -34,8 +34,13 @@ import NavBar from "../components/NavBar";
 	<>
       <NavBar />
 	  <div className="m-5">
+	  		<div className="">
+				<div className="flex justify-center flex-">
+					<h1 className="font-bold font-serif text-3xl">Mascota Desaparecida</h1>
+				</div>
+			</div>
 			<div className="">
-				<div className="flex justify-center">
+				<div className="flex justify-center mt-5	">
 					{ post.photo ? (<><img src={post.photo.url}/></>) : (<></>)}
 				</div>
 			</div>
