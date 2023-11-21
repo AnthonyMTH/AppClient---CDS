@@ -60,6 +60,15 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  const updatePost = async (id,post) => {
+    try {
+      const res = await updatePostRequest(id,post);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const deletePost = async (id) => {
     try {
       const res = await deletePostRequest(id);
@@ -79,6 +88,7 @@ export const PostProvider = ({ children }) => {
         getPost,
         getMyPosts,
         createPost,
+        updatePost,
         deletePost,
       }}
     >

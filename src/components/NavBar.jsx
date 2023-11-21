@@ -16,13 +16,16 @@ function NavBar() {
                 {isAuthenticated ? (
                     <>
                 <li>
-                    <Link to='/' className="hover:text-gray-800 transition duration-300">Home</Link>
+                    <Link to='/' className=" hover:text-gray-800 transition duration-300">Home</Link>
                 </li>
                 <li>
                     <Link to='/my-posts' className="hover:text-gray-800 transition duration-300">Publicaciones</Link>
                 </li>
                 <li>
                     <Link to='/add-post' className="hover:text-gray-800 transition duration-300">Añadir</Link>
+                </li>
+                <li>
+                    <Link to='/chats' className="hover:text-gray-800 transition duration-300">Chats</Link>
                 </li>
                 <li>
                     <Link to='/' className="text-red-400 hover:text-red-800 transition duration-300"

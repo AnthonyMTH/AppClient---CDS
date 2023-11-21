@@ -22,7 +22,7 @@ function HomePage() {
           {isAuthenticated ? (
             <>
               <Link
-                to={`/posts/`}
+                to={`/add-post/`}
                 className="rounded-lg border border-blue-300 text-blue-300 p-2 hover:bg-blue-300 hover:text-white"
               >
                 Añadir +

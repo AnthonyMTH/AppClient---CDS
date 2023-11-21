@@ -1,16 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useNavigate,useParams } from "react-router-dom";
 import { usePosts } from "../context/PostContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 
-
 function PostFormPage() {
-  const { register, handleSubmit, formState: { errors },setValue } = useForm();
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const { user, isAuthenticated } = useAuth();
-  const { createPost, getMyPosts } = usePosts();
+  const { createPost, updatePost, getMyPosts, getPost } = usePosts();
+  const params = useParams()
   const navigate  = useNavigate();
 
   const onSubmit = handleSubmit(async (values) => {
@@ -18,11 +17,14 @@ function PostFormPage() {
     console.log(values);
     const res = {
       description: values.description,
-      photo: values.image[0],
+      image: values.image[0],
     };
+    if(params.id){
 
-    await createPost(res);
-
+      await updatePost(params.id,res);
+    } else {
+      await createPost(res);
+    }
     // Después de que la creación del post se completa, realiza la redirección
     navigate("/my-posts");
   } catch (error) {
@@ -30,20 +32,30 @@ function PostFormPage() {
   }
   });
 
+  useEffect(() => {
+    async function loadPost(){
+      if(params.id){
+        const post = await getPost(params.id)
+        setValue("description", post.description)
+      }
+    }
+    loadPost()
+  },[])
+
+
   return (
     <>
     <div className="flex justify-center items-center h-[calc(100vh-100px)]">
       <div className="bg-slate-100 max-w-md w-full p-10 rounded-md">
-        {isAuthenticated ? (
+        {params.id ? (
         <>
-        
+            <h1 className="text-2xl font-bold flex justify-center">Editar Publicación</h1>
         </>
         ) : (
           <>
-
+            <h1 className="text-2xl font-bold flex justify-center">Añadir Publicación</h1>
           </>
         ) }
-        <h1 className="text-2xl font-bold flex justify-center">Añadir Publicación</h1>
         <form onSubmit={onSubmit}>
           <textarea
             className="w-full bg-slate-200 rounded-md p-10 m-2"
@@ -56,12 +68,8 @@ function PostFormPage() {
           <input
             className="w-full bg-slate-200 rounded-md p-2 m-2"
             type="file"
-            {...register("image", { required: true })}
+            {...register("image")}
           />
-          {errors.image && <p className="text-red-500">Subir Fotografía es requerido</p>}
-          
-
-
           <button
             className="bg-blue-500 text-white rounded-md p-2 m-2 mx-2 font-bold hover:bg-blue-400"
             type="submit" display="flex" justify-content="center"

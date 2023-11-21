@@ -22,7 +22,7 @@ function MyPostsPage(){
         <div className="m-5">
           <div className="flex justify-between">
             <h1 className="font-bold text-2xl">Mis publicaciones</h1>
-            <Link to={`/posts/`} className="rounded-lg border border-blue-300 text-blue-300 p-2 hover:bg-blue-300 hover:text-white">
+            <Link to={`/add-post/`} className="rounded-lg border border-blue-300 text-blue-300 p-2 hover:bg-blue-300 hover:text-white">
                 Añadir +
             </Link>
           </div>

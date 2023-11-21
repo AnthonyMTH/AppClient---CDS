@@ -18,7 +18,7 @@ function PostCard({ post }) {
       )}
       <div className="flex justify-between">
         <div className="flex justify-between">
-          {isAuthenticated && user.id === post.user ? (
+          {isAuthenticated && (user.id === post.user || user.id === post.user._id) ? (
             <>
               <Link
                 className="text-sm font-bold bg-blue-600 text-slate-200 rounded-md p-1.5 px-2.5 m-2 ml-0 hover:bg-blue-400 hover:text-white"
