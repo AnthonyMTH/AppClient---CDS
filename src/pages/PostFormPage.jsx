@@ -17,7 +17,7 @@ function PostFormPage() {
     console.log(values);
     const res = {
       description: values.description,
-      image: values.image[0],
+      photo: values.image[0],
     };
     if(params.id){
 
