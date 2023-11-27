@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 function NavBar() {
 
   const {isAuthenticated, logOut, user} = useAuth()
-
+	console.log(user)
   return (
     <nav className="relative w-full h-[8vh] bg-[#29b650] font-serif ">
         <div className="flex justify-between">
@@ -33,7 +33,7 @@ function NavBar() {
                 </li>
                 <li className="flex justify-between"> 
                     <Link to='/profile' className="hover:text-gray-800 transition duration-300">
-                        { user.photo ? (<><img className="h-8 w-9 mr-1 object-cover rounded-full" src={user.photo.url}/></>) : (<>
+                        { user.photo && user.photo.url ? (<><img className="h-8 w-9 mr-1 object-cover rounded-full" src={user.photo.url}/></>) : (<>
 												  <img className="h-8 w-9 mr-1 object-cover rounded-full" src="https://res.cloudinary.com/disi3bzmx/image/upload/v1701121341/posts/bhbua911khdfqpupieap.jpg"/></>)}
                     </Link>
                     <h1>{user.username}</h1>

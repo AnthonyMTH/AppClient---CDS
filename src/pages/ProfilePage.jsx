@@ -81,7 +81,8 @@ function ProfilePage(){
 											<h1 className="flex justify-center">Foto Personal</h1>
 										</div>
 										<div className="w-full h-full">
-											{ newUser.photo ? (<><img src={newUser.photo.url}/></>) : (<></>)}
+											{ newUser.photo ? (<><img src={newUser.photo.url}/></>) : (<>
+											<img src="https://res.cloudinary.com/disi3bzmx/image/upload/v1701121341/posts/bhbua911khdfqpupieap.jpg"/></>)}
 										</div>
 										
 									</div>
