@@ -11,6 +11,7 @@ function HomePage() {
 
   useEffect(() => {
     getPosts();
+    console.log(posts)
   }, []);
 
   return (

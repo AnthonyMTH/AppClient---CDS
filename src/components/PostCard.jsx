@@ -1,10 +1,16 @@
 import { useAuth } from "../context/AuthContext";
+import { useChats } from "../context/ChatContext";
 import { usePosts } from "../context/PostContext";
 import { Link } from "react-router-dom";
 
 function PostCard({ post }) {
   const { isAuthenticated, user } = useAuth();
   const { deletePost } = usePosts();
+  const { createChat } = useChats()
+
+  const handleClick = async () => {
+    await createChat(user.id, post.user)
+  }
 
   return (
     <div className="bg-slate-100 p-10 relative flex flex-col">
@@ -37,7 +43,8 @@ function PostCard({ post }) {
             <>
               <Link
                 className="text-sm font-bold bg-blue-600 text-slate-200 rounded-md p-1.5 px-2.5 m-2 ml-0 hover:bg-blue-400 hover:text-white"
-                to={`/posts/${post._id}`}
+                to={`/chats`}
+                onClick={handleClick}
               >
                 Contactar
               </Link>

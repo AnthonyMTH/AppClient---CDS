@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getChatsRequest } from "../api/chats";
+import { createChatRequest, getChatsRequest } from "../api/chats";
 
 export const ChatContext = createContext()
 
@@ -16,6 +16,15 @@ export const useChats = () => {
 export const ChatProvider = ({children}) => {
     const [chats, setChats] = useState([])
 
+    const createChat = async (senderId, receiverId) => {
+        try {
+            const res = await createChatRequest({ senderId, receiverId })
+            setChats([...chats, res.data])
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const getChats = async (id) => {
         try {
             const res = await getChatsRequest(id)
@@ -28,6 +37,7 @@ export const ChatProvider = ({children}) => {
     return (
         <ChatContext.Provider value={{
             chats,
+            createChat,
             getChats,
         }}>
         {children}

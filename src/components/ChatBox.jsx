@@ -37,6 +37,7 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
 
   useEffect(() => {
     if (chat !== null) {
+      setMessages([])
       getMessages(chat._id);
     }
     console.log(userData)
@@ -65,6 +66,15 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
     scroll.current?.scrollIntoView({behavior: 'smooth'})
   }, [messages])
 
+  useEffect(() => {
+  // Restablecer mensajes cuando cambia la conversación
+    setMessages([]);
+
+    if (chat !== null) {
+      getMessages(chat._id);
+    }
+  }, [chat]);
+
   return (
     <>
       <div className="grid rounded-2xl grid-rows-[14vh,65vh,10vh] bg-white mt-5">
@@ -89,8 +99,8 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                 <>
                 <div ref={scroll} className="flex flex-col">
                     <div className={message.senderId === currentUserId
-                    ? "bg-blue-300 p-2 rounded-md rounded-br-none text-white w-fit self-end": 
-                    "bg-green-300 p-2 rounded-md rounded-bl-none text-white w-fit"}>
+                    ? "bg-blue-500 p-2 rounded-lg rounded-br-none text-white w-fit self-end": 
+                    "bg-slate-100 p-2 rounded-lg rounded-bl-none w-fit"}>
                         <p>{message.text}</p> 
                         <span className="text-xs">{format(message.createdAt)}</span>
                     </div>
@@ -101,12 +111,12 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
 
               {/* sender */}
               <div className="flex items-center">
-                <div>+</div>
+                <div className="p-3 text-white bg-green-400 mx-2 rounded-xl font-bold hover:cursor-pointer hover:bg-green-300">+</div>
                 <InputEmoji 
                 value = {newMessage}
                 onChange={handleChange}
                 />
-                <div className="p-2 m-1 bg-green-600 rounded-md h-[4vh] font-bold hover:bg-green-400 hover:cursor-pointer"
+                <div className="p-2 m-1 bg-green-400 rounded-md h-[4vh] font-bold hover:bg-green300 hover:cursor-pointer text-white"
                 onClick={handleSend}>
                   Send
                 </div>
