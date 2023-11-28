@@ -13,11 +13,13 @@ function PostCard({ post }) {
   }
 
   return (
-    <div className="bg-slate-100 p-10 relative flex flex-col">
+    <div className="bg-slate-100 p-10 relative flex flex-col h-[500px] justify-between overflow-hidden">
       <p className="">{post.description}</p>
       {post.photo ? (
         <>
-          <img src={post.photo.url} className="my-2" />
+          <img src={post.photo.url} 
+          className="my-2 max-w-full max-h-[80%] h-auto"
+          alt="Post image" />
         </>
       ) : (
         <></>
