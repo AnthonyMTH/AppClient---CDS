@@ -3,16 +3,16 @@ import { useAuth } from "../context/AuthContext";
 
 function NavBar() {
 
-    const {isAuthenticated, logOut, user} = useAuth()
-
+  const {isAuthenticated, logOut, user} = useAuth()
+	console.log(user)
   return (
-    <nav className="relative w-full h-[8vh] bg-[#29b650] font-serif">
+    <nav className="relative w-full h-[8vh] bg-[#29b650] font-serif ">
         <div className="flex justify-between">
             <div className="ml-10 mt-5">
                 {/* foto de la página */}
                 <p className="font-bold text-2xl text-white">Find Pets</p>
             </div>
-            <ul className="flex gap-x-10 m-6 text-white text-lg font-bold">
+            <ul className="flex gap-x-10 m-4 text-white text-lg font-bold">
                 {isAuthenticated ? (
                     <>
                 <li>
@@ -31,9 +31,12 @@ function NavBar() {
                     <Link to='/' className="text-red-400 hover:text-red-800 transition duration-300"
                     onClick={() => logOut()}>Cerrar sesión</Link>
                 </li>
-                <li>
-                    <Link to='/profile' className="hover:text-gray-800 transition duration-300">{user.username}</Link>
-                    {/* foto de perfil */}
+                <li className="flex justify-between"> 
+                    <Link to='/profile' className="hover:text-gray-800 transition duration-300">
+                        { user.photo && user.photo.url ? (<><img className="h-8 w-9 mr-1 object-cover rounded-full" src={user.photo.url}/></>) : (<>
+												  <img className="h-8 w-9 mr-1 object-cover rounded-full" src="https://res.cloudinary.com/disi3bzmx/image/upload/v1701121341/posts/bhbua911khdfqpupieap.jpg"/></>)}
+                    </Link>
+                    <h1>{user.username}</h1>
                 </li>
                     </>
                 ) : (
