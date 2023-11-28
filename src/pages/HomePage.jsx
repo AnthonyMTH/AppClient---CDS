@@ -19,7 +19,7 @@ function HomePage() {
       <NavBar />
       <div className="m-5">
         <div className="flex justify-between">
-          <h1 className="font-bold text-2xl">Listado de mascotas</h1>
+          <h1 className="font-bold text-2xl">Mascotas desaparecidas</h1>
           {isAuthenticated ? (
             <>
               <Link
@@ -34,7 +34,7 @@ function HomePage() {
           )}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-2 sm:grid-cols-2 mt-5">
+        <div className="grid md:grid-cols-3 gap-4 sm:grid-cols-2 mt-5">
           {posts.map((post) => (
             <PostCard post={post} key={post._id} />
           ))}

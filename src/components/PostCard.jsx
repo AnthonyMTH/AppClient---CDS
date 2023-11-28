@@ -28,18 +28,21 @@ function PostCard({ post }) {
         <div className="flex justify-between">
           {isAuthenticated && (user.id === post.user || user.id === post.user._id) ? (
             <>
+            <div className="mx-20">
               <Link
-                className="text-sm font-bold bg-blue-600 text-slate-200 rounded-md p-1.5 px-2.5 m-2 ml-0 hover:bg-blue-400 hover:text-white"
+                className="text-sm font-bold bg-blue-600 text-slate-200 rounded-md p-1.5 px-2.5 m-2 ml-0 hover:bg-blue-500 hover:text-white"
                 to={`/edit-post/${post._id}`}
               >
                 Editar
               </Link>
               <button
-                className="text-sm font-bold rounded-xl bg-red-600 p-1.5 px-2.5 m-2 ml-0 hover:bg-red-500 text-white"
+                className="text-sm font-bold rounded-md bg-red-600 p-1.5 px-2.5 m-2 ml-0 hover:bg-red-500 text-white"
                 onClick={() => deletePost(post._id)}
               >
                 Eliminar
               </button>
+
+            </div>
             </>
           ) : (
             <>

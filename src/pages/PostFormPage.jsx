@@ -44,42 +44,37 @@ function PostFormPage() {
 
 
   return (
-    <>
-    <div className="flex justify-center items-center h-[calc(100vh-100px)]">
-      <div className="bg-slate-100 max-w-md w-full p-10 rounded-md">
+    <div className="flex justify-center items-center h-screen">
+      <div className="bg-white max-w-md w-full p-10 rounded-md shadow-md">
         {params.id ? (
-        <>
-            <h1 className="text-2xl font-bold flex justify-center">Editar Publicación</h1>
-        </>
+          <h1 className="text-2xl font-bold text-center mb-4">Editar Publicación</h1>
         ) : (
-          <>
-            <h1 className="text-2xl font-bold flex justify-center">Añadir Publicación</h1>
-          </>
-        ) }
+          <h1 className="text-2xl font-bold text-center mb-4">Añadir Publicación</h1>
+        )}
         <form onSubmit={onSubmit}>
           <textarea
-            className="w-full bg-slate-200 rounded-md p-10 m-2"
-            type="text" autoComplete="off"
+            className="w-full bg-gray-100 rounded-md p-4 mb-4 resize-none focus:outline-none"
+            type="text"
+            autoComplete="off"
             {...register("description", { required: true })}
             placeholder="Descripción"
           />
-          {errors.description && <p className="text-red-500">Descripción es requerida</p>}
+          {errors.description && <p className="text-red-500 text-sm">La descripción es requerida</p>}
 
           <input
-            className="w-full bg-slate-200 rounded-md p-2 m-2"
+            className="w-full bg-gray-100 rounded-md p-2 mb-4 focus:outline-none"
             type="file"
             {...register("image")}
           />
           <button
-            className="bg-blue-500 text-white rounded-md p-2 m-2 mx-2 font-bold hover:bg-blue-400"
-            type="submit" display="flex" justify-content="center"
+            className="bg-blue-500 text-white rounded-md p-2 font-bold hover:bg-blue-400 focus:outline-none"
+            type="submit"
           >
             Guardar
           </button>
         </form>
       </div>
-      </div>
-    </>
+    </div>
   );
   
 }
