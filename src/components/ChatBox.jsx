@@ -83,7 +83,24 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
         (position) => {
           const { latitude, longitude } = position.coords;
           setMapLocation({ lat: latitude, lng: longitude });
+
           console.log(mapLocation);
+
+          const message = {
+          senderId: currentUserId,
+          text: "", 
+          chatId: chat._id,
+          location: {
+            type: "Point",
+            coordinates: [longitude, latitude],
+          },
+        };
+
+        addMessage(message);
+
+        /* Enviar mensaje a socket */
+        const receiverId = chat.members.find((id) => id !== currentUserId);
+        setSendMessage({ ...message, receiverId });
         },
         (error) => {
           console.error(error);
@@ -94,6 +111,9 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
       console.error("Geolocalización no es compatible en este navegador.");
     }
   };
+
+  const isLocationMessage = (message) => message.location && message.location.type === "Point";
+
 
   return (
     <>
@@ -115,10 +135,18 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
             {/* ChatBox messages */}
             {/* Body */}
             <div className="flex flex-col gap-2 p-6 overflow-scroll">
-              {mapLocation && <LocationMap center={mapLocation} />}
               {messages.map((message) => (
                 <>
                   <div ref={scroll} className="flex flex-col">
+                    {isLocationMessage(message) ? (
+                      <div className="bg-green-200 p-2 rounded-lg w-1/3">
+                      {/* Utiliza la posición del usuario como posición del marcador */}
+                      {console.log("desde chatbox", message.location)}
+                      
+                      <LocationMap center={message.location.coordinates} />
+                    </div>
+                    ) : (
+
                     <div
                       className={
                         message.senderId === currentUserId
@@ -131,6 +159,7 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                         {format(message.createdAt)}
                       </span>
                     </div>
+                    )}
                   </div>
                 </>
               ))}
