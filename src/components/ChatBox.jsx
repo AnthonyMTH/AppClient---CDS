@@ -4,12 +4,13 @@ import { useMessages } from "../context/MessageContext";
 import { format } from "timeago.js";
 import InputEmoji from "react-input-emoji";
 import LocationMap from "./LocationMap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
   const [userData, setUserData] = useState(null);
   const { messages, getMessages, addMessage, setMessages } = useMessages();
   const [newMessage, setNewMessage] = useState("");
-  const [mapLocation, setMapLocation] = useState({});
   const scroll = useRef();
 
   useEffect(() => {
@@ -82,9 +83,6 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setMapLocation({ lat: latitude, lng: longitude });
-
-          console.log(mapLocation);
 
           const message = {
           senderId: currentUserId,
@@ -139,11 +137,11 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
                 <>
                   <div ref={scroll} className="flex flex-col">
                     {isLocationMessage(message) ? (
-                      <div className="bg-green-200 p-2 rounded-lg w-1/3">
+                      <div className="bg-green-100 p-1 rounded-lg w-1/3">
                       {/* Utiliza la posición del usuario como posición del marcador */}
                       {console.log("desde chatbox", message.location)}
                       
-                      <LocationMap center={message.location.coordinates} />
+                      <LocationMap center={message.location.coordinates}/>
                     </div>
                     ) : (
 
@@ -169,9 +167,10 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
             <div className="flex items-center">
               <div
                 className="p-3 text-white bg-green-400 mx-2 rounded-xl font-bold hover:cursor-pointer hover:bg-green-300"
+                
                 onClick={handleLocationClick}
               >
-                +
+                <FontAwesomeIcon icon={faLocationDot} />
               </div>
               <InputEmoji value={newMessage} onChange={handleChange} />
               <div

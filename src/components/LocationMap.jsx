@@ -1,25 +1,46 @@
-import { LoadScript, GoogleMap, Marker } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
 
 const LocationMap = ({ center }) => {
-  try {
+
   const mapContainerStyle = {
-    width: '50%',
+    width: '100%',
     height: '200px',
   };
-        console.log("desde componente", center)
+
+
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyAgmP2XLPCHVGdTYKjTidcRto7s5GHVzlI'
+  });
+
+  if (loadError) return 'Error al cargar el mapa';
+  if (!isLoaded) return 'Cargando el mapa...';
+
+  const handleMapClick = () => {
+    const [lat, lng] = center;
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lng},${lat}`;
+
+    // Abre una nueva pestaña con Google Maps
+    window.open(mapsUrl, '_blank');
+  };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyAgmP2XLPCHVGdTYKjTidcRto7s5GHVzlI">
-      <GoogleMap mapContainerStyle={mapContainerStyle} center={{ lat: center[1], lng: center[0] }} zoom={15}>
-        {/* Utiliza la posición del usuario como posición del marcador */}
-        <Marker position={{ lat: center[1], lng: center[0] }} />
-      </GoogleMap>
-    </LoadScript>
+    <div>
+    <GoogleMap mapContainerStyle={mapContainerStyle} center={{ lat: center[1], lng: center[0] }} zoom={15}>
+      {/* Utiliza la posición del usuario como posición del marcador */}
+      <MarkerF position={{ lat: center[1], lng: center[0] }} />
+    </GoogleMap>
+    <div style={{ textAlign: 'center', marginTop: '10px' }}>
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${center[1]},${center[0]}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 underline cursor-pointer"
+        >
+          Abrir en Google Maps
+        </a>
+      </div>
+    </div>
   );
-    
-  } catch (error) {
-  console.log(error)  
-  }
 };
 
 export default LocationMap;

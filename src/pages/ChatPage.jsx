@@ -55,8 +55,8 @@ function ChatPage() {
     <>
     <div className="flex flex-col h-screen">
       <NavBar />
-      <div className="flex items-center flex-grow">
-        <div className="bg-slate-200 w-1/4 h-full">
+      <div className="flex items-center flex-grow bg-slate-200">
+        <div className="w-1/4 h-full">
           {/* Left Side */}
           <div className="flex flex-col gap-4">
             <div className="bg-white w-[calc(35vh)] rounded-2xl m-5">
@@ -73,7 +73,7 @@ function ChatPage() {
           {/* Rigth side */}
         </div>
         {/* chat body */}
-        <div className="w-screen bg-slate-200 h-full">
+        <div className="w-3/5 h-full">
           <ChatBox chat={currentChat} currentUserId={user.id} setSendMessage={setSendMessage} receiveMessage={receiveMessage}/>
         </div>
       </div>
