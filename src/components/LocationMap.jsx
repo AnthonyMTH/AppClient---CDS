@@ -3,7 +3,7 @@ import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
 const LocationMap = ({ center }) => {
 
   const mapContainerStyle = {
-    width: '100%',
+    width: '400px',
     height: '200px',
   };
 
@@ -34,7 +34,7 @@ const LocationMap = ({ center }) => {
           href={`https://www.google.com/maps/search/?api=1&query=${center[1]},${center[0]}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 underline cursor-pointer"
+          className="underline cursor-pointer"
         >
           Abrir en Google Maps
         </a>

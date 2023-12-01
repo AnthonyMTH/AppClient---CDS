@@ -67,8 +67,8 @@ function NavBar() {
                 {user.photo && user.photo.url ? (
                   <>
                     <img
-                      className="h-8 w-9 mr-1 object-cover rounded-full"
                       src={user.photo.url}
+                      className="h-8 w-9 mr-1 object-cover rounded-full"
                     />
                   </>
                 ) : (

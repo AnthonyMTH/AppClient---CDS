@@ -134,32 +134,31 @@ function ChatBox({ chat, currentUserId, setSendMessage, receiveMessage }) {
             {/* Body */}
             <div className="flex flex-col gap-2 p-6 overflow-scroll">
               {messages.map((message) => (
-                <>
-                  <div ref={scroll} className="flex flex-col">
-                    {isLocationMessage(message) ? (
-                      <div className="bg-green-100 p-1 rounded-lg w-1/3">
+                <div
+                  key={message._id}
+                  ref={scroll}
+                  className={`flex flex-col ${
+                    message.senderId === currentUserId
+                      ? "bg-blue-400 p-2 rounded-lg rounded-br-none text-white w-fit self-end"
+                      : "bg-slate-100 p-2 rounded-lg rounded-bl-none w-fit"
+                  }`}
+                >
+                  {isLocationMessage(message) ? (
+                    <div>
                       {/* Utiliza la posición del usuario como posición del marcador */}
-                      {console.log("desde chatbox", message.location)}
-                      
-                      <LocationMap center={message.location.coordinates}/>
+                      <LocationMap center={message.location.coordinates} />
                     </div>
-                    ) : (
-
-                    <div
-                      className={
-                        message.senderId === currentUserId
-                          ? "bg-blue-500 p-2 rounded-lg rounded-br-none text-white w-fit self-end"
-                          : "bg-slate-100 p-2 rounded-lg rounded-bl-none w-fit"
-                      }
-                    >
+                  ) : (
+                    <div>
                       <p>{message.text}</p>
+                    </div>
+                  )}
+                  <div>
                       <span className="text-xs">
                         {format(message.createdAt)}
                       </span>
-                    </div>
-                    )}
                   </div>
-                </>
+                </div>
               ))}
             </div>
 
